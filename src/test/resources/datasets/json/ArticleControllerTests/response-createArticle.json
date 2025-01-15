@@ -1,0 +1,12 @@
+{
+  "id": "${json-unit.ignore}",
+  "title": "test title",
+  "content": "test content",
+  "createdDate": "2025-01-01T00:00:00Z",
+  "updatedDate": "2025-01-01T00:00:00Z",
+  "author": {
+    "id": 42,
+    "name": "John Doe"
+  },
+  "version": 0
+}

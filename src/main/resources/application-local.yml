@@ -1,0 +1,4 @@
+# intercepts all SQL queries and logs them with binding parameters
+logging.level.net.ttddyy.dsproxy.listener: debug
+decorator.datasource.datasource-proxy.format-sql: true
+

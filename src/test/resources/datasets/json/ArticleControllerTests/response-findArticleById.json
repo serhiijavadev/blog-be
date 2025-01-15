@@ -1,0 +1,12 @@
+{
+  "id": 101,
+  "title": "First Article",
+  "content": "This is the first article.",
+  "createdDate": "2021-01-01T00:00:00Z",
+  "updatedDate": "2021-01-01T00:00:00Z",
+  "author": {
+    "id": 42,
+    "name": "John Doe"
+  },
+  "version": 0
+}

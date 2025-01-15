@@ -1,0 +1,147 @@
+openapi: "3.1.0"
+info:
+  title: "blog_be API"
+  description: "blog_be API"
+  version: "1.0.0"
+servers:
+  - url: "https://blog_be"
+paths:
+  /api/v1/articles:
+    get:
+      summary: "GET api/v1/articles"
+      operationId: "findAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ArticleSummaryView"
+    post:
+      summary: "POST api/v1/articles"
+      operationId: "create"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArticleCreateRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ArticleView"
+  /api/v1/articles/{id}:
+    get:
+      summary: "GET api/v1/articles/{id}"
+      operationId: "findById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ArticleView"
+    put:
+      summary: "PUT api/v1/articles/{id}"
+      operationId: "update"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArticleUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ArticleView"
+    delete:
+      summary: "DELETE api/v1/articles/{id}"
+      operationId: "delete"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "204":
+          description: "No Content"
+components:
+  schemas:
+    ArticleSummaryView:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        title:
+          type: "string"
+        authorName:
+          type: "string"
+    AuthorView:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+    ArticleView:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        title:
+          type: "string"
+        content:
+          type: "string"
+        createdDate:
+          type: "string"
+        updatedDate:
+          type: "string"
+        author:
+          $ref: "#/components/schemas/AuthorView"
+        version:
+          type: "integer"
+          format: "int64"
+    ArticleCreateRequest:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        content:
+          type: "string"
+        authorId:
+          type: "integer"
+          format: "int64"
+    ArticleUpdateRequest:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        content:
+          type: "string"
